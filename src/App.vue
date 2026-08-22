@@ -1,15 +1,5 @@
-<template>
-  <div id="app">
-    <AppHeader />
-
-    <div class="container mt-3">
-      <router-view />
-    </div>
-  </div>
-</template>
-
 <script>
-import AppHeader from "@/components/AppHeader.vue";
+import AppHeader from "./components/AppHeader.vue";
 
 export default {
   components: {
@@ -17,3 +7,17 @@ export default {
   },
 };
 </script>
+<!-- //AN app hét đờ// -->
+<template>
+  <div>
+    <AppHeader v-if="$route.name !== 'login'" />
+
+    <router-view />
+  </div>
+</template>
+<style>
+.page {
+  max-width: 400px;
+  margin: auto;
+}
+</style>

@@ -1,7 +1,21 @@
 import { createWebHistory, createRouter } from "vue-router";
 import ContactBook from "@/views/ContactBook.vue";
+import { renderList } from "vue";
 
 const routes = [
+  {
+    path: "/",
+    redirect: "/login",
+  },
+
+  // các route khác...
+
+  {
+    path: "/login",
+    name: "login",
+    component: () => import("../views/Login.vue"),
+  },
+
   {
     path: "/",
     name: "contactbook",
@@ -32,5 +46,14 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 });
+// router.beforeEach((to) => {
+//   const isLogin = localStorage.getItem("isLogin");
+
+//   if (to.name != "login" && !isLogin) {
+//     return {
+//       name: "login",
+//     };
+//   }
+// });
 
 export default router;

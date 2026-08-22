@@ -44,16 +44,62 @@
       <ErrorMessage name="phone" class="error-feedback" />
     </div>
 
-    <div class="form-group form-check">
+    <div class="form-group">
+      <label for="favorite">Liên hệ yêu thích</label>
       <input
+        id="favorite"
         name="favorite"
-        type="checkbox"
-        class="form-check-input"
+        type="text"
+        class="form-control"
         v-model="contactLocal.favorite"
       />
-      <label for="favorite" class="form-check-label">
-        <strong>Liên hệ yêu thích</strong>
-      </label>
+    </div>
+    <div class="form-group">
+      <label><strong>Sở thích</strong></label>
+
+      <div class="form-check">
+        <input
+          id="sport"
+          type="checkbox"
+          class="form-check-input"
+          value="Thể thao"
+          v-model="contactLocal.hobbies"
+        />
+        <label for="sport" class="form-check-label"> Thể thao </label>
+      </div>
+
+      <div class="form-check">
+        <input
+          id="music"
+          type="checkbox"
+          class="form-check-input"
+          value="Âm nhạc"
+          v-model="contactLocal.hobbies"
+        />
+        <label for="music" class="form-check-label"> Âm nhạc </label>
+      </div>
+
+      <div class="form-check">
+        <input
+          id="travel"
+          type="checkbox"
+          class="form-check-input"
+          value="Du lịch"
+          v-model="contactLocal.hobbies"
+        />
+        <label for="travel" class="form-check-label"> Du lịch </label>
+      </div>
+
+      <div class="form-check">
+        <input
+          id="reading"
+          type="checkbox"
+          class="form-check-input"
+          value="Đọc sách"
+          v-model="contactLocal.hobbies"
+        />
+        <label for="reading" class="form-check-label"> Đọc sách </label>
+      </div>
     </div>
 
     <div class="form-group">
@@ -118,7 +164,15 @@ export default {
     });
 
     return {
-      contactLocal: this.contact,
+      contactLocal: {
+        ...this.contact,
+
+        // favoriteText: this.contact.favoriteText || "",
+
+        favorite: this.contact.favorite || "",
+
+        hobbies: this.contact.hobbies || [],
+      },
       contactFormSchema,
     };
   },
@@ -129,7 +183,7 @@ export default {
     },
 
     deleteContact() {
-      this.$emit("delete:contact", this.contactLocal.id);
+      this.$emit("delete:contact", this.contactLocal._id);
     },
 
     Cancel() {
@@ -139,9 +193,9 @@ export default {
 
       if (!reply) {
         return false;
-      } else {
-        this.$router.push({ name: "contactbook" });
       }
+
+      this.$router.push({ name: "contactbook" });
     },
   },
 };
