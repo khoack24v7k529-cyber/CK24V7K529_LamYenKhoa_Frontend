@@ -9,6 +9,12 @@ const routes = [
   },
 
   {
+    path: "/contacts/add",
+    name: "contact.add",
+    component: () => import("@/views/ContactCreate.vue"),
+  },
+
+  {
     path: "/contacts/:id",
     name: "contact.edit",
     component: () => import("@/views/ContactEdit.vue"),
